@@ -32,6 +32,9 @@ For unit-testing, we require Unity to be installed. We recommend using the lates
 Compiling the solution:
 `dotnet build .\src\Microsoft.Unity.Analyzers.slnx`
 
+A successful build copies the combined `D11.Unity.Analyzers.dll` to the Unity
+project's `Assets\Editor\RoslynAnalyzers` directory.
+
 Running the unit tests:
 `dotnet test .\src\Microsoft.Unity.Analyzers.slnx`
 

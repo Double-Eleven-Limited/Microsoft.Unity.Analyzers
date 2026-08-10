@@ -45,6 +45,9 @@ ID | Title | Category
 [UNT0041](UNT0041.md) | Use `Animator.StringToHash` for repeated `Animator` method calls | Performance
 [UNT0042](UNT0042.md) | `Mesh` array property accessed in loop | Performance
 [UNT0043](UNT0043.md) | Possible typo in conditional compilation symbol | Correctness
+[PSA001](PSA001.md) | Profiler sample is left open | Correctness
+[PSA002](PSA002.md) | Profiler `EndSample` has no matching `BeginSample` | Correctness
+[PSA003](PSA003.md) | Profiler sample can be left open by early exit | Correctness
 
 # Diagnostic Suppressors
 

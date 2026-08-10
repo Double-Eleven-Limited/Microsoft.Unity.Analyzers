@@ -54,9 +54,9 @@ namespace UnityEngine
 
 	struct Color32 { }
 
-	public struct Vector2 { }
-	public struct Vector3 { }
-	public struct Vector4 { }
+	struct Vector2 { }
+	struct Vector3 { }
+	struct Vector4 { }
 
 
 	class IEnumeratorOrVoid { }
@@ -181,12 +181,19 @@ namespace UnityEngine
 	class StateMachineBehaviour : ScriptableObject
 	{
 		public virtual void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) { }
+		public virtual void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex, Animations.AnimatorControllerPlayable controller) { }
 		public virtual void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) { }
+		public virtual void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex, Animations.AnimatorControllerPlayable controller) { }
 		public virtual void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) { }
+		public virtual void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex, Animations.AnimatorControllerPlayable controller) { }
 		public virtual void OnStateMove(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) { }
+		public virtual void OnStateMove(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex, Animations.AnimatorControllerPlayable controller) { }
 		public virtual void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) { }
+		public virtual void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex, Animations.AnimatorControllerPlayable controller) { }
 		public virtual void OnStateMachineEnter(Animator animator, int stateMachinePathHash) { }
+		public virtual void OnStateMachineEnter(Animator animator, int stateMachinePathHash, Animations.AnimatorControllerPlayable controller) { }
 		public virtual void OnStateMachineExit(Animator animator, int stateMachinePathHash) { }
+		public virtual void OnStateMachineExit(Animator animator, int stateMachinePathHash, Animations.AnimatorControllerPlayable controller) { }
 	}
 
 	class Texture2D
@@ -232,7 +239,7 @@ namespace UnityEngine
 		}
 	}
 
-	public enum KeyCode
+	enum KeyCode
 	{
 		[KeyTextAttribute(null)] None = 0,
 		[KeyTextAttribute("backspace")] Backspace = 8,
@@ -607,6 +614,11 @@ namespace UnityEngine
 	class RequireComponent : Attribute { }
 }
 
+namespace UnityEngine.Animations
+{
+	struct AnimatorControllerPlayable { }
+}
+
 namespace UnityEngine.EventSystems
 {
 	abstract class UIBehaviour : MonoBehaviour
@@ -790,9 +802,9 @@ namespace UnityEditor
 
 namespace Unity.Mathematics
 {
-	public struct float2 { }
-	public struct float3 { }
-	public struct float4 { }
+	struct float2 { }
+	struct float3 { }
+	struct float4 { }
 }
 
 namespace UnityEngine.Jobs

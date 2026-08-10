@@ -268,6 +268,24 @@ class App : AssetPostprocessor
 	}
 
 	[Fact]
+	public async Task StateMachineBehaviourAnimatorControllerPlayableOverload()
+	{
+		const string test = @"
+using UnityEngine;
+using UnityEngine.Animations;
+
+class CameraAnimationSync : StateMachineBehaviour
+{
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller)
+    {
+    }
+}
+";
+
+		await VerifyCSharpDiagnosticAsync(test);
+	}
+
+	[Fact]
 	public async Task AwaitableMessageSignature()
 	{
 		const string test = @"

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>D11.Unity.Analyzers</AssemblyName>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
@@ -18,6 +19,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Microsoft.Unity.Analyzers.Tests</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +34,14 @@
   <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0 AND !EXISTS('$(SolutionDir).husky/_/husky.sh')">
     <Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />
     <Exec Command="dotnet husky install" StandardOutputImportance="Low" StandardErrorImportance="High" WorkingDirectory="../.." />
+  </Target>
+
+  <Target Name="CopyAnalyzerToUnity" AfterTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
+    <PropertyGroup>
+      <UnityAnalyzerPath>$(MSBuildProjectDirectory)\..\..\..\..\..\Assets\Editor\RoslynAnalyzers\$(AssemblyName).dll</UnityAnalyzerPath>
+    </PropertyGroup>
+    <MakeDir Directories="$([System.IO.Path]::GetDirectoryName('$(UnityAnalyzerPath)'))" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(UnityAnalyzerPath)" SkipUnchangedFiles="true" Retries="10" RetryDelayMilliseconds="500" />
   </Target>
 
 </Project>
